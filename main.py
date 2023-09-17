@@ -20,9 +20,10 @@ def calculate_statistics(file_path):
         return str(e)
 
 # Function to visualize specific columns as histograms
-def visualize_data(data):
+def visualize_data(file_path):
     try:
         # Check if the input is a DataFrame
+        data = pd.read_csv(file_path)
         if not isinstance(data, pd.DataFrame):
             raise ValueError("Input is not a pandas DataFrame")
 
@@ -68,8 +69,7 @@ if __name__ == "__main__":
     print(statistics_result)
 
     # Visualize specific columns as histograms
-    dataFile = readfile(dataset_path)
-    visualize_data(dataFile)
+    visualize_data(dataset_path)
 
     # Calculate and print the correlation of artist_popularity with other columns
     correlation_result = calculate_correlation(dataset_path)
