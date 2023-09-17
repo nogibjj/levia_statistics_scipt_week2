@@ -1,6 +1,5 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 # Function to read the dataset
 def readfile(a):
@@ -17,12 +16,11 @@ def calculate_statistics(file_path):
         selected_columns = ['danceability', 'energy', 'artist_popularity', 'loudness']
         data = data[selected_columns]
 
-        # Calculating mean, median, and standard deviation
+        # Calculating mean, median
         mean = data.mean()
         median = data.median()
-        std = data.std()
         
-        return {'mean': mean, 'median': median, 'std': std}
+        return {'mean': mean, 'median': median}
     except Exception as e:
         return str(e)
 
