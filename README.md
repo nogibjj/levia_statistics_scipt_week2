@@ -7,7 +7,7 @@ Welcome to my project! This repository contains all the code and resources relat
 - statistics.py
 - Data Visualization (Images)
 - Statistics Summarization
-- Data Description (Long Description)
+- Data Description
 
 ## statistics.py
 
@@ -20,10 +20,6 @@ In this script, it includes the following functions:
 ## Statistics Summarization
 
 ## Data Description
-
-The "World Export & Import Dataset (1989 - 2023)" is a comprehensive collection of data related to international trade and trade policies. This dataset is designed to provide insights and analysis for researchers, policymakers, and analysts interested in understanding global trade dynamics. It covers various aspects of trade, including trade values, tariff rates, and trade policy indicators for numerous countries over multiple years.
-
-### Data Fields:
 
 Source
 The data is extracted through Spotify API directly. For a comprehensive overview of the data extraction process, you can check out the notebook here.
