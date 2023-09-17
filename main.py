@@ -2,24 +2,21 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Function to read the dataset
-def readfile(a):
-    df = pd.read_csv(a)
+def readfile(file_path):
+    df = pd.read_csv(file_path)
     return df
 
 # Function to calculate statistics for specific columns
-def calculate_statistics(file_path):
+def calculate_statistics(data):
     try:
-        # Reading the dataset from the CSV file
-        data = pd.read_csv(file_path)
-
         # Selecting specific columns of interest
         selected_columns = ['danceability', 'energy', 'artist_popularity', 'loudness']
         data = data[selected_columns]
 
-        # Calculating mean, median
+        # Calculating mean and median
         mean = data.mean()
         median = data.median()
-        
+
         return {'mean': mean, 'median': median}
     except Exception as e:
         return str(e)
@@ -40,16 +37,13 @@ def visualize_data(data):
             plt.title(f"Histogram of {col}")
             plt.grid(True)
             plt.show()
-    
+
     except Exception as e:
         return str(e)
 
 # Function to calculate the correlation of artist_popularity with other columns
-def calculate_correlation(file_path):
+def calculate_correlation(data):
     try:
-        # Reading the dataset from the CSV file
-        data = pd.read_csv(file_path)
-
         # Selecting specific columns of interest
         selected_columns = ['danceability', 'energy', 'artist_popularity', 'loudness']
         data = data[selected_columns]
@@ -59,24 +53,26 @@ def calculate_correlation(file_path):
 
         # Extracting the correlation of 'artist_popularity' with other columns
         artist_popularity_correlation = correlation_matrix['artist_popularity']
-        
+
         return artist_popularity_correlation
     except Exception as e:
         return str(e)
 
 if __name__ == "__main__":
-    dataset_path = "playlist.csv"  
+    dataset_path = "playlist.csv"
     
+    # Read the dataset
+    data = readfile(dataset_path)
+
     # Calculate statistics for specific columns
-    statistics_result = calculate_statistics(dataset_path)
+    statistics_result = calculate_statistics(data)
     print("Descriptive Statistics:")
     print(statistics_result)
 
     # Visualize specific columns as histograms
-    data = readfile(dataset_path)
     visualize_data(data)
 
     # Calculate and print the correlation of artist_popularity with other columns
-    correlation_result = calculate_correlation(dataset_path)
+    correlation_result = calculate_correlation(data)
     print("\nCorrelation of artist_popularity with other columns:")
     print(correlation_result)
