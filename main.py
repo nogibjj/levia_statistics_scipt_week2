@@ -68,8 +68,8 @@ if __name__ == "__main__":
     print(statistics_result)
 
     # Visualize specific columns as histograms
-    data = readfile(dataset_path)
-    visualize_data(data)
+    dataFile = readfile(dataset_path)
+    visualize_data(dataFile)
 
     # Calculate and print the correlation of artist_popularity with other columns
     correlation_result = calculate_correlation(dataset_path)
