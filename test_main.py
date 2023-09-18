@@ -1,17 +1,16 @@
-import main  
-if __name__ == "__main__":
-    file_path = 'playlist.csv'  # Replace with the actual path to your dataset
-
-    # Test calculate_statistics function
-    statistics_result = main.calculate_statistics(file_path)
-    print("Descriptive Statistics:")
-    print(statistics_result)
-
-    # Test visualize_data function
-    data = main.readfile(file_path)
-    main.visualize_data(data)
-
-    # Test calculate_correlation function
-    correlation_result = main.calculate_correlation(file_path)
-    print("\nCorrelation of artist_popularity with other columns:")
-    print(correlation_result)
+import main
+import pandas as pd
+def test_calculate_statistics():
+    # Creating a test CSV file
+    data = {'Column1': [0, 1, 0, 0], 'Column2': [3, 3, 1, 3]}
+    df = pd.DataFrame(data)
+    df.to_csv('test_data.csv', index=False)
+    # Calling the function with the test CSV file
+    result = main.calculate_statistics('test_data.csv')
+    # Checking the results
+    assert result['mean']['Column1'] == 0.25
+    assert result['median']['Column1'] == 0
+    # Cleaning up
+    import os
+    os.remove('test_data.csv')
+test_calculate_statistics()
