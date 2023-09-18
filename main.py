@@ -15,7 +15,8 @@ def calculate_statistics(file_path):
         mean = data.mean()
         median = data.median()
         
-        return {'mean': mean, 'median': median}
+        # return {'mean': mean, 'median': median}
+        return {'mean': mean.to_dict(), 'median': median.to_dict()}
     except pd.errors.EmptyDataError as e:
         return str(e)
 
