@@ -1,16 +1,61 @@
-import main
-import pandas as pd
+import pytest
+import main  # Import the main module containing your functions
+
+# Define test cases for calculate_statistics function
 def test_calculate_statistics():
-    # Creating a test CSV file
-    data = {'Column1': [0, 1, 0, 0], 'Column2': [3, 3, 1, 3]}
-    df = pd.DataFrame(data)
-    df.to_csv('test_data.csv', index=False)
-    # Calling the function with the test CSV file
+    # Create a sample CSV file for testing
+    sample_data = pd.DataFrame({
+        'danceability': [0.7, 0.6, 0.8],
+        'energy': [0.8, 0.7, 0.9],
+        'artist_popularity': [80, 70, 90],
+        'loudness': [-5, -6, -4]
+    })
+    sample_data.to_csv('test_data.csv', index=False)
+
+    # Test the calculate_statistics function
     result = main.calculate_statistics('test_data.csv')
-    # Checking the results
-    assert result['mean']['Column1'] == 0.25
-    assert result['median']['Column1'] == 0
-    # Cleaning up
+    
+    # Verify the expected output
+    assert result == {'mean': sample_data.mean(), 'median': sample_data.median()}
+
+# Define test cases for visualize_data function
+def test_visualize_data():
+    # Create a sample CSV file for testing
+    sample_data = pd.DataFrame({
+        'danceability': [0.7, 0.6, 0.8],
+        'energy': [0.8, 0.7, 0.9],
+        'artist_popularity': [80, 70, 90],
+        'loudness': [-5, -6, -4]
+    })
+    sample_data.to_csv('test_data.csv', index=False)
+
+    # Test the visualize_data function
+    result = main.visualize_data('test_data.csv')
+    
+    # You can add assertions here to check the expected behavior
+
+# Define test cases for calculate_correlation function
+def test_calculate_correlation():
+    # Create a sample CSV file for testing
+    sample_data = pd.DataFrame({
+        'danceability': [0.7, 0.6, 0.8],
+        'energy': [0.8, 0.7, 0.9],
+        'artist_popularity': [80, 70, 90],
+        'loudness': [-5, -6, -4]
+    })
+    sample_data.to_csv('test_data.csv', index=False)
+
+    # Test the calculate_correlation function
+    result = main.calculate_correlation('test_data.csv')
+    
+    # You can add assertions here to check the expected behavior
+
+# Clean up the test file by removing the sample data file
+def teardown():
     import os
-    os.remove('test_data.csv')
-test_calculate_statistics()
+    if os.path.exists('test_data.csv'):
+        os.remove('test_data.csv')
+
+# Run the tests
+if __name__ == "__main__":
+    pytest.main()
