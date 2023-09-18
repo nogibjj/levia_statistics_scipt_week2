@@ -92,7 +92,9 @@ if __name__ == "__main__":
     print(statistics_result)
 
     # Visualize specific columns as histograms
-    visualize_data(dataset_path)
+    # To save the plots as images in a 'plots' directory
+    visualize_data(dataset_path, save_path='plots')
+
 
     # Calculate and print the correlation of artist_popularity with other columns
     correlation_result = calculate_correlation(dataset_path)
