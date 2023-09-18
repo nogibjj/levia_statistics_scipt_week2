@@ -1,5 +1,6 @@
 import pytest
 import main  # Import the main module containing your functions
+import pandas as pd
 
 # Define test cases for calculate_statistics function
 def test_calculate_statistics():
