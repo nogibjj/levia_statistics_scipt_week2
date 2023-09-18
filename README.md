@@ -16,7 +16,7 @@ Python script using Pandas for descriptive statistics.
 In this script, it includes the following functions:
 
 ## Data Visualization
-![image](https://github.com/nogibjj/hy218_statistics_scipt_week2/plots/energy_histogram.png)
+![image](https://github.com/nogibjj/hy218_statistics_scipt_week2/blob/main/plots/energy_histogram.png?raw=true)
 
 ## Statistics Summarization
 The following are the result of the statistics
