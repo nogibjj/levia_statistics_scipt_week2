@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import os  # Import the os module to manage files
 
 # Function to calculate statistics for specific columns
 def calculate_statistics(file_path):
@@ -24,15 +25,22 @@ def calculate_statistics(file_path):
     except pd.errors.EmptyDataError as e:
         return str(e)
 
+
+
 # Function to visualize specific columns as histograms
-def visualize_data(file_path):
+def visualize_data(file_path, save_path=None):
     try:
         # Check if the input is a DataFrame
         data = pd.read_csv(file_path)
         if not isinstance(data, pd.DataFrame):
             raise ValueError("Input is not a pandas DataFrame")
 
+        # Create a directory to store the plots if save_path is provided
+        if save_path:
+            os.makedirs(save_path, exist_ok=True)
+
         # Iterate over each numeric column and create a histogram
+        histogram_paths = []
         for col in data.columns:
             plt.figure(figsize=(8, 6))
             plt.hist(data[col], bins=20, edgecolor='k', alpha=0.7)
@@ -40,10 +48,20 @@ def visualize_data(file_path):
             plt.ylabel("Frequency")
             plt.title(f"Histogram of {col}")
             plt.grid(True)
-            plt.show()
+
+            if save_path:
+                histogram_path = os.path.join(save_path, f"{col}_histogram.png")
+                plt.savefig(histogram_path)
+                plt.close()
+                histogram_paths.append(histogram_path)
+            else:
+                plt.show()
     
+        if save_path:
+            return histogram_paths
     except ValueError as e:
         return str(e)
+
 
 # Function to calculate the correlation of artist_popularity with other columns
 def calculate_correlation(file_path):
