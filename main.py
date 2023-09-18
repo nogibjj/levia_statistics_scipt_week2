@@ -12,8 +12,12 @@ def calculate_statistics(file_path):
         data = data[selected_columns]
 
         # Calculating mean, median
+        
         mean = data.mean()
         median = data.median()
+
+        mean = mean.round(1)
+        median = median.round(1)
         
         return {'mean': mean, 'median': median}
         # return {'mean': mean.to_dict(), 'median': median.to_dict()}
